@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset=utf-8 />
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        canvas {
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<h2>BG Color Slider Test/Demo</h2>
+
+<div>
+    <canvas id="targetSquare" width="150" height="150"></canvas>
+    <canvas id="inputSquare" width="150" height="150"></canvas>
+</div>
+
+<div id="rgbSliders" style="margin:auto;">
+    <label for="rSlider">R</label>
+    <input type="range" min="0" max="255" value="127" class="slider" id="rSlider">
+    <br>
+    <label for="gSlider">G</label>
+    <input type="range" min="0" max="255" value="127" class="slider" id="gSlider">
+    <br>
+    <label for="bSlider">B</label>
+    <input type="range" min="0" max="255" value="127" class="slider" id="bSlider">
+</div>
+
+<p>
+    <button id="resetButton">Reset</button>
+    <button id="matchButton">match</button>
+</p>
+
+<p>
+    <table>
+        <tr>
+            <td># of Trials</td>
+            <td id="tableTrials">0</td>
+        </tr>
+        <tr>
+            <td>Red Error</td>
+            <td id="tableRError">-</td>
+        </tr>
+        <tr>
+            <td>Grn Error</td>
+            <td id="tableGError">-</td>
+        </tr>
+        <tr>
+            <td>Blu Error</td>
+            <td id="tableBError">-</td>
+        </tr>
+        <tr>
+            <td>Trial Error Avg</td>
+            <td id="tableTrialAvg">-</td>
+        </tr>
+        <tr>
+            <td>Running Error Avg</td>
+            <td id="tableRunAvg">-</td>
+        </tr>
+    </table>
+
+
+
+<script>
+    var numberOfTrials = 0;
+    var trialErrorAverage = 0;
+    var averageError = 0;
+
+    var rInput = 127;
+    var gInput = 127;
+    var bInput = 127;
+
+    var rTarget = 0;
+    var gTarget = 0;
+    var bTarget = 0;
+
+    var rError = 0;
+    var gError = 0;
+    var bError = 0;
+
+    $("#matchButton").click( function() {
+        // calculate data
+        numberOfTrials += 1;
+
+        rError = Math.abs(rTarget - rInput);
+        gError = Math.abs(gTarget - gInput);
+        bError = Math.abs(bTarget - bInput);
+
+        trialErrorAverage = (rError + gError + bError) / 3;
+
+        averageError = ((averageError * (numberOfTrials-1)) + trialErrorAverage) / numberOfTrials;
+
+        // add numbers to table
+        $("#tableTrials").html(numberOfTrials);
+        $("#tableRError").html(rError);
+        $("#tableGError").html(gError);
+        $("#tableBError").html(bError);
+        $("#tableTrialAvg").html(parseFloat(trialErrorAverage).toFixed(2));
+        $("#tableRunAvg").html(parseFloat(averageError).toFixed(2));
+
+        // reset input square
+        $("#rSlider").val(127);
+        $("#gSlider").val(127);
+        $("#bSlider").val(127);
+        $("#inputSquare").css("background", "rgb(" + 127 + "," + 127 + "," + 127 + ")");
+
+        // randomize target square
+        rTarget = Math.floor(Math.random() * 256);
+        gTarget = Math.floor(Math.random() * 256);
+        bTarget = Math.floor(Math.random() * 256);
+
+        $("#targetSquare").css("background", "rgb(" + rTarget + "," + gTarget + "," + bTarget + ")");
+    });
+
+
+    // reset colors without recording error
+    $("#resetButton").click( function() {
+        // set input square grey
+        $("#rSlider").val(127);
+        $("#gSlider").val(127);
+        $("#bSlider").val(127);
+
+        $("#inputSquare").css("background", "rgb(" + 127 + "," + 127 + "," + 127 + ")");
+
+        // randomize target square
+        rTarget = Math.floor(Math.random() * 256);
+        gTarget = Math.floor(Math.random() * 256);
+        bTarget = Math.floor(Math.random() * 256);
+
+        $("#targetSquare").css("background", "rgb(" + rTarget + "," + gTarget + "," + bTarget + ")");
+    });
+
+    // get values from all sliders whenever one slider changes
+    $("#rgbSliders").change(function() {
+        rInput = $("#rSlider").val();
+        gInput = $("#gSlider").val();
+        bInput = $("#bSlider").val();
+        $("#inputSquare").css("background", "rgb(" + rInput + "," + gInput + "," + bInput + ")");
+    });
+
+</script>
+
+</body>
+</html>
