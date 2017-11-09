@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <script src="main_js.js"></script>
+        
+        <title>Welcome</title>
+        <style>
+            #top{
+                height: 100px;
+                background-color: burlywood;
+            }
+            .login{
+                text-align:right;
+                float:right;
+                margin-right: 60px;
+                margin-top: 15px;
+            }
+            .gamebutton{
+                margin-top: 20px;
+                margin-left: 60px;
+                font-size: 24px;
+            }
+            .gamebutton:hover{
+                background-color: antiquewhite;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <!--header of the website -->
+		<header id="top">
+			<form >
+                <input class="gamebutton" type="button" value="Games">
+                <div class="login">
+                    <label>Userame:<input type="text" placeholder="Username"></label><br>
+                    <label>Password:<input type="password" placeholder="Password"></label><br>
+                    <input type="submit" value="Submit">
+                </div>
+                <p class="welcome"></p>
+            </form>
+		</header>
+        
+       
+    </body>
+</html>
