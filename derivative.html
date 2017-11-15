@@ -16,7 +16,7 @@
 
 	<div id="toBeGuessed">
 		What is the derivative of this:<br>
-		<img src="picture" id="theDerivative">
+		<img id="theDerivative" alt="derivative">
 	</div>
 	<div id="yourGuesses">
 		<strong>Click on your guess:<br></strong>
@@ -36,6 +36,17 @@
 		</form>
 
 	</div>
+    
+    <script>
+        function random0to7(){
+            var pictures= ["devOfsin", "devOfCos", "devOfTan", "devOfCot", "devOfSec", "devOfCsc", "devOfArcsin", "devOfArccos"];
+            //generate an integer 0 to 7.
+            return pictures[Math.floor(Math.random()*8)];//+".PNG";
+        }
+        //document.getElementById("theDerivative").src="../images/"+random0to7()+".PNG";
+        document.getElementById("theDerivative").src="/images/"+"devOfSin"+".PNG";
+        
+    </script>
 
 </body>
 </html>
