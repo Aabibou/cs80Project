@@ -16,7 +16,7 @@
 
 	<div id="toBeGuessed">
 		What is the derivative of this:<br>
-		<img id="theDerivative" alt="">
+		<img id="theDerivative" alt="Derivative of a trig function" height="50px" width="120">
 	</div>
 	<div id="yourGuesses">
 		<strong>Click on your guess:<br></strong>
@@ -28,6 +28,7 @@
 			<label>Image 2
 				<input type="radio" name="guessOptions" value="2" id="ans2"><br>
 			</label>
+		<!--
 			<label>Image 3
 				<input type="radio" name="guessOptions" value="3" id="ans
 				3"><br>
@@ -35,34 +36,42 @@
 			<label>Image 4
 				<input type="radio" name="guessOptions" value="1" id="ans4"><br>
 			</label>
+		-->
 		</form>
 
 	</div>
 	<p id="radioValue"></p>
     
     <script>
-    /* Not working due to src url
+    // Not working due to src url
         function random0to7(){
-            var pictures= ["devOfSin", "devOfCos", "devOfTan", "devOfCot", "devOfSec", "devOfCsc", "devOfArcsin", "devOfArccos"];
+            var pictures= ["devOfCos", "devOfSin", "devOfSec", "devOfCsc", "devOfTan", "devOfCot", "devOfArccos", "devOfArcsin"];
             //generate an integer 0 to 7.
             return pictures[Math.floor(Math.random()*8)];//+".PNG";
         }
-        //document.getElementById("theDerivative").src="../images/"+random0to7()+".PNG";
-        document.getElementById("theDerivative").src="/images/"+"devOfSin"+".PNG";
-     */
+        var pic = random0to7();
+        
+        //URL of the images
+        document.getElementById("theDerivative").src="./images/"+pic+".PNG";
+        //document.getElementById("theDerivative").src="/images/"+"devOfSin"+".PNG";
+        //Image in the Answer options
+        function ansImage(){
+        	var ansPic=["negSin", "sin", "cos", "negCos", "secTimeTan", "negSecTan", "negCscTimeCot", "cscTimeCot", "secSquare", "negSecSquare", "cscSquare", "negCscSquare", "sol1ArcSin", "sol2ArcSin"];
+        }
+  /*   
     function radioListener(){
 	     var radios = document.forms["derivativeAnswers"].elementsd["guessOptions"];
 	     /*for(radio in radios){
 	     	return radios[radio].onclick = function(){
 	     	 return radio.value;
 	     	}
-	     */
-
+	     
 	     return 
 	    }
-	  document.getElementById("radioValue").innerHTML="You chose answer: "+radioListener();
+*/
+/*	  document.getElementById("radioValue").innerHTML="You chose answer: "+radioListener();
 	  document.getElementById("derivativeAnswers").addEventListener("click", radioListener());
-        
+  */      
     </script>
 
 </body>
