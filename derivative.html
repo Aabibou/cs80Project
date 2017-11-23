@@ -65,12 +65,13 @@
 
         //an array of size of
         //var twoOptions = new array(2);
-        var twoOptionns=["", ""]
+        var twoOptions=["", ""];
+        console.log(twoOptions[0]);
         /*
         	This function return an array of size 2.
         	they hold the options which the use has to guess the right solution.
         */
-        function answerImage(){
+        function answerImage(twoOptions){
         	
         	
         	//twoOptions array will hold two solutions and the user have to choose one of them.
@@ -110,11 +111,13 @@
         	}
         	return twoOptions;
         }
+
+
         /*
 			This function reverse twoOption array such that:
 			 twoOption=["a", "b"] becomes twoOption=["b", "a"]
         */
-        function reverseTwoOptionsArray(){
+        function reverseTwoOptionsArray(twoOptions){
         	var temporary= twoOptions[0];
         	twoOptions[0]=twoOptions[1];
         	twoOptions[1]=temporary;
@@ -122,16 +125,20 @@
         /*
 			This function choose or not toR reverse the array twoOptions
         */
-        function randomizeTwoOptionsArray(){
+        function randomizeTwoOptionsArray(twoOptions){
         	//iniatiliaze the twoOptions array
-        	answerImage();
+        	answerImage(twoOptions);
         	
         	if(Math.floor(Math.random()*2)){
-        		reverseTwoOptionsArray();
+        		reverseTwoOptionsArray(twoOptions);
         	}
         }
 
-        randomizeTwoOptionsArray();
+        randomizeTwoOptionsArray(twoOptions);
+
+
+         console.log(twoOptions[1]);
+        
 
         document.getElementById("option1").src="./images/"+twoOptions[0]+".PNG";
         document.getElementById("option2").src="./images/"+twoOptions[1]+".PNG";
