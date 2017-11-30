@@ -21,11 +21,11 @@
 	<div id="yourGuesses">
 		<strong>Click on your guess:<br></strong>
 		<form name="derivativeAnswers">
-			<label>Image 1
+			<label id="radio1">Image 1
 				<img id="option1" height="50px" width="120">
 				<input type="radio" name="guessOptions" value="1" id="ans1"><br>
 			</label>
-			<label>Image 2
+			<label id="radio2">Image 2
 				<img id="option2" height="50px" width="120">
 				<input type="radio" name="guessOptions" value="2" id="ans2"><br>
 			</label>
@@ -39,6 +39,8 @@
 			</label>
 		-->
 		</form>
+
+		<p id="text"></p>
 
 	</div>
 	<p id="radioValue"></p>
@@ -142,6 +144,35 @@
 
         document.getElementById("option1").src="./images/"+twoOptions[0]+".PNG";
         document.getElementById("option2").src="./images/"+twoOptions[1]+".PNG";
+
+        document.getElementById("radio1").addEventListener("click", isRightAnswer(document.getElementById("option1").src));
+        document.getElementById("radio2").addEventListener("click", isRightAnswer(document.getElementById("option2").src));
+
+        function expectedAnswer(elem){
+        	switch(pictures[picIndex]){
+        		case devOfCos:
+        			return "negSin";
+        		case devOfSin:
+        			return "cos";
+        		case devOfSec:
+        			return "secTan";
+        		case devOfCsc:
+        			return "negCscCot";
+        		case devOfTan:
+        			return "secSquare";
+        		case devOfCot:
+        			return "negCscSquare";
+        		case devOfArccos:
+        			return "sol2ArcSin";
+        		case devOfArcsin:
+        			return "sol1ArcSin";
+        	}
+        }
+
+        function isRightAnswer(elem){
+        	document.getElementById("text").innerHTML=elem;
+
+        }
 
   /*   
     function radioListener(){
