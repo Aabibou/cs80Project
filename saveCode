@@ -16,17 +16,17 @@
 
 	<div id="toBeGuessed">
 		What is the derivative of this:<br>
-		<img id="theDerivative" alt="Derivative of a trig function" height="70px" width="200">
+		<img id="theDerivative" alt="Derivative of a trig function" height="50px" width="120">
 	</div>
 	<div id="yourGuesses">
 		<strong>Click on your guess:<br></strong>
 		<form name="derivativeAnswers">
 			<label id="radio1">Image 1
-				<img id="option1" height="70px" width="200">
+				<img id="option1" height="50px" width="120">
 				<input type="radio" name="guessOptions" value="1" id="ans1"><br>
 			</label>
 			<label id="radio2">Image 2
-				<img id="option2" height="70px" width="200">
+				<img id="option2" height="50px" width="120">
 				<input type="radio" name="guessOptions" value="2" id="ans2"><br>
 			</label>
 		<!--
@@ -59,7 +59,7 @@
             return Math.floor(Math.random()*8);//+".PNG";
         }
         var picIndex = random0to7();
-
+        
         //URL of the images
         document.getElementById("theDerivative").src="./images/"+pictures[picIndex]+".PNG";
         //document.getElementById("theDerivative").src="/images/"+"devOfSin"+".PNG";
@@ -139,60 +139,40 @@
         randomizeTwoOptionsArray(twoOptions);
 
 
-         //console.log(twoOptions[1]);
+         console.log(twoOptions[1]);
         
 
         document.getElementById("option1").src="./images/"+twoOptions[0]+".PNG";
         document.getElementById("option2").src="./images/"+twoOptions[1]+".PNG";
 
-        //old 
-        //document.getElementById("radio1").addEventListener("click", isRightAnswer(document.getElementById("option1").src));
-        //document.getElementById("radio2").addEventListener("click", isRightAnswer(document.getElementById("option2").src));
-        // office hours
-        document.getElementById("radio1").addEventListener("click", function() {
-            isRightAnswer(document.getElementById("option1").src);
-        });
-        document.getElementById("radio2").addEventListener("click", function() {
-            isRightAnswer(document.getElementById("option2").src);
-        });
-        
-        /*
-            the function take the url image like "file:///C:/Users/Abibou/Desktop/cs80Project/images/sol1ArcSin.PNG"
-            and see if it contains a substring: the name of the derivative.
+        document.getElementById("radio1").addEventListener("click", isRightAnswer(document.getElementById("option1").src));
+        document.getElementById("radio2").addEventListener("click", isRightAnswer(document.getElementById("option2").src));
 
-            It returns true or false
-        */
         function expectedAnswer(elem){
         	switch(pictures[picIndex]){
-        		case "devOfCos":
-                //the function _string.indexOf(_substring) see if the string contains the substring _substring: return index if yes and -1 if no
-                    //return true or false
-                    return elem.indexOf("negSin")==-1;
-        		case "devOfSin":
-        			return elem.indexOf("cos")==-1;
-        		case "devOfSec":
-        			return elem.indexOf("secTan")==-1;
-        		case "devOfCsc":
-        			return elem.indexOf("negCscCot")==-1;
-        		case "devOfTan":
-        			return elem.indexOf("secSquare")==-1;
-        		case "devOfCot":
-        			return elem.indexOf("negCscSquare")==-1;
-        		case "devOfArccos":
-        			return elem.indexOf("sol2ArcSin")==-1;
-        		case "devOfArcsin":
-        			return elem.indexOf("sol1ArcSin")==-1;
+        		case devOfCos:
+        			return "negSin";
+        		case devOfSin:
+        			return "cos";
+        		case devOfSec:
+        			return "secTan";
+        		case devOfCsc:
+        			return "negCscCot";
+        		case devOfTan:
+        			return "secSquare";
+        		case devOfCot:
+        			return "negCscSquare";
+        		case devOfArccos:
+        			return "sol2ArcSin";
+        		case devOfArcsin:
+        			return "sol1ArcSin";
         	}
         }
 
-
         function isRightAnswer(elem){
-        	document.getElementById("text").innerHTML=expectedAnswer(elem);
+        	document.getElementById("text").innerHTML=elem;
+
         }
-
-        //document.getElementById("text").innerHTML=elem;
-
-
 
   /*   
     function radioListener(){
