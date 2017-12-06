@@ -1,8 +1,3 @@
-//var rValue = 127;
-//var gValue = 127;
-//var bValue = 127;
-
-
 function myFunction() {
     var rValue = document.getElementById("rSlider").value;
     var gValue = document.getElementById("gSlider").value;

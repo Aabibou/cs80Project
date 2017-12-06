@@ -1,0 +1,165 @@
+
+body {
+    visibility: hidden;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+html {
+    height: 100%;
+}
+
+.rowContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.gameRow {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.gameData {
+    visibility: visible;
+}
+
+#startButton {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    visibility: visible;
+}
+
+#rgbSliders {
+    margin: auto;
+    width: 50%;
+}
+
+#colorSquareHolder {
+    display: flex;
+    justify-content: space-around;
+    /*background-color: lightgray;*/
+}
+
+
+/* source:
+    https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
+
+/* remove/hide default styling */
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+}
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.66em; /* 8.4px;*/
+    cursor: pointer;
+    /*animate: 0.2s;*/
+    box-shadow: none; /*1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+    background: lightgray;
+    border-radius: 0; /*1px;*/
+    border: none; /*1px solid #000000;*/
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: none; /*1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+    border: none; /*1px solid #000000;*/
+    height: 1em; /*16px; /*36px;*/
+    width: 1em; /*16px; */
+    border-radius: 50%; /*3px;*/
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -.19em; /*-14px;*/
+}
+
+#rSlider::-webkit-slider-thumb {
+    background: #ff0000;
+    /*background: red;*/
+}
+
+#gSlider::-webkit-slider-thumb {
+    background: #00ff00;
+}
+
+#bSlider::-webkit-slider-thumb {
+    background: #0000ff;
+}
+
+/*input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+}*/
+
+/* firefox */
+/*input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    !* animate: 0.2s; *!
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+    !*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*!
+    !*border: 1px solid #000000;*!
+    height: 16px; !*36px;*!
+    width: 16px;
+    border-radius: 50%; !*3px;*!
+    background: #ffffff;
+    cursor: pointer;
+}*/
+/* IE? */
+/*
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    !*animate: 0.2s;*!
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+}*/
