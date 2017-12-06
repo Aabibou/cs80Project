@@ -3,39 +3,247 @@
 <head>
 	<title>Derivative game!</title>
 	<style type="text/css">
+        
+        .flex-container>div{
+            background-color: antiquewhite;
+            margin 10px;
+            padding 20px;
+            font-size: 30px;
+        }
 	
 		#yourGuesses{
 			float: right;
 			text-align: right;
 			margin-right: 100px;
+            margin-top; 50px;
 		}
+        #toBeGuessed{
+            float: left;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
 	</style>
 </head>
 <body>
 	<p style="text-align: center">Show us your Math skills!</p>
 
-	<div id="toBeGuessed">
-		What is the derivative of this:<br>
-		<img src="picture" id="theDerivative">
-	</div>
-	<div id="yourGuesses">
-		<strong>Click on your guess:<br></strong>
-		<form>
-			<label>Image 1
-				<input type="radio" name="guessOptions"><br>
-			</label>
-			<label>Image 2
-				<input type="radio" name="guessOptions"><br>
-			</label>
-			<label>Image 3
-				<input type="radio" name="guessOptions"><br>
-			</label>
-			<label>Image 4
-				<input type="radio" name="guessOptions"><br>
-			</label>
-		</form>
+    <div class="flex-container">
+        <div id="toBeGuessed">
+            What is the derivative of this:<br>
+            <img id="theDerivative" alt="Derivative of a trig function" height="70px" width="200">
+        </div>
+        <div id="yourGuesses">
+            <strong>Click on your guess:<br></strong>
+            <form name="derivativeAnswers">
+                <label id="radio1">
+                    <img id="option1" height="70px" width="200">
+                    <input type="radio" name="guessOptions" value="1" id="ans1"><br>
+                </label>
+                <label id="radio2">
+                    <img id="option2" height="70px" width="200">
+                    <input type="radio" name="guessOptions" value="2" id="ans2"><br>
+                </label>
+            <!--
+                <label>Image 3
+                    <input type="radio" name="guessOptions" value="3" id="ans
+                    3"><br>
+                </label>
+                <label>Image 4
+                    <input type="radio" name="guessOptions" value="1" id="ans4"><br>
+                </label>
+            -->
+            </form>
 
-	</div>
+            <p id="text"></p>
+
+        </div>
+    </div>
+	<p id="radioValue"></p>
+    
+    <script>
+    // Global variable of 8 pictures name.
+    var pictures= ["devOfCos", "devOfSin", "devOfSec", "devOfCsc", "devOfTan", "devOfCot", "devOfArccos", "devOfArcsin"];
+    	/*
+    		This function randomly select a integer from 0 to 7
+    		which is the index of the array pictures.
+    	*/
+        function random0to7(){
+
+            //Math.floor(Math.random()*8) generates an integer 0 to 7 inclusive.
+            //Ramdomly select a picture name.
+            return Math.floor(Math.random()*8);//+".PNG";
+        }
+        var picIndex = random0to7();
+
+        //URL of the images
+        document.getElementById("theDerivative").src="./images/"+pictures[picIndex]+".PNG";
+        //document.getElementById("theDerivative").src="/images/"+"devOfSin"+".PNG";
+        //Image in the Answer options
+
+        //an array of size of
+        //var twoOptions = new array(2);
+        var twoOptions=["", ""];
+        console.log(twoOptions[0]);
+        /*
+        	This function return an array of size 2.
+        	they hold the options which the use has to guess the right solution.
+        */
+        function answerImage(twoOptions){
+        	
+        	
+        	//twoOptions array will hold two solutions and the user have to choose one of them.
+        	switch(picIndex){
+        		case 0:
+        			twoOptions[0]="negSin";
+        			twoOptions[1]="sin";
+        			break;
+        		case 1:
+        			twoOptions[0]="cos";
+        			twoOptions[1]="negCos";
+        			break;
+        		case 2:
+        			twoOptions[0]="secTan";
+        			twoOptions[1]="negSecTan";
+        			break;
+        		case 3:
+        			twoOptions[0]="negCscCot";
+        			twoOptions[1]="cscCot";
+        			break;
+        		case 4:
+        			twoOptions[0]="secSquare";
+        			twoOptions[1]="negSecSquare";
+        			break;
+        		case 5:
+        			twoOptions[0]="negCscSquare";
+        			twoOptions[1]="cscSquare";
+        			break;
+        		case 6:
+        			twoOptions[0]="sol2ArcSin";
+        			twoOptions[1]="sol1ArcSin";
+        			break;
+        		case 7:
+        			twoOptions[0]="sol1ArcSin";
+        			twoOptions[1]="sol2ArcSin";
+        			break;
+        	}
+        	return twoOptions;
+        }
+
+
+        /*
+			This function reverse twoOption array such that:
+			 twoOption=["a", "b"] becomes twoOption=["b", "a"]
+        */
+        function reverseTwoOptionsArray(twoOptions){
+        	var temporary= twoOptions[0];
+        	twoOptions[0]=twoOptions[1];
+        	twoOptions[1]=temporary;
+        }
+        /*
+			This function choose or not toR reverse the array twoOptions
+        */
+        function randomizeTwoOptionsArray(twoOptions){
+        	//iniatiliaze the twoOptions array
+        	answerImage(twoOptions);
+        	
+        	if(Math.floor(Math.random()*2)){
+        		reverseTwoOptionsArray(twoOptions);
+        	}
+        }
+
+        randomizeTwoOptionsArray(twoOptions);
+
+
+         //console.log(twoOptions[1]);
+        
+
+        document.getElementById("option1").src="./images/"+twoOptions[0]+".PNG";
+        document.getElementById("option2").src="./images/"+twoOptions[1]+".PNG";
+
+        //old 
+        //document.getElementById("radio1").addEventListener("click", isRightAnswer(document.getElementById("option1").src));
+        //document.getElementById("radio2").addEventListener("click", isRightAnswer(document.getElementById("option2").src));
+        // office hours
+        document.getElementById("radio1").addEventListener("click", function() {
+            isRightAnswer(document.getElementById("option1").src);
+        });
+        document.getElementById("radio2").addEventListener("click", function() {
+            isRightAnswer(document.getElementById("option2").src);
+        });
+        
+        /*
+            the function take the url image like "file:///C:/Users/Abibou/Desktop/cs80Project/images/sol1ArcSin.PNG"
+            and see if it contains a substring: the name of the derivative.
+
+            It returns true or false
+        */
+        function expectedAnswer(elem){
+        	switch(pictures[picIndex]){
+        		case "devOfCos":
+                //the function _string.indexOf(_substring) see if the string contains the substring _substring: return index if yes and -1 if no
+                    //return true or false
+                    return elem.indexOf("negSin")==-1;
+        		case "devOfSin":
+        			return elem.indexOf("cos")==-1;
+        		case "devOfSec":
+        			return elem.indexOf("secTan")==-1;
+        		case "devOfCsc":
+        			return elem.indexOf("negCscCot")==-1;
+        		case "devOfTan":
+        			return elem.indexOf("secSquare")==-1;
+        		case "devOfCot":
+        			return elem.indexOf("negCscSquare")==-1;
+        		case "devOfArccos":
+        			return elem.indexOf("sol2ArcSin")==-1;
+        		case "devOfArcsin":
+        			return elem.indexOf("sol1ArcSin")==-1;
+        	}
+        }
+
+
+        function isRightAnswer(elem){
+        	document.getElementById("text").innerHTML=expectedAnswer(elem);
+        }
+        
+        //array of size 5
+        var arr = Array(5);
+        
+        /*
+            This function will fill the array (arr[5]) with 5 different random number
+            between 0 to 7 inclusive.
+        */
+        //Not tested yet
+        function fillTheArrayRandomly(){
+            var i, j, rand;
+            var repeated=false;
+            for(i=0; i<5; i++){
+                rand=random0to7;
+                //check if a number is repeated
+                for(j=0; j<i; j++){
+                    if(arr[j]==rand){
+                        repeated=true;
+                        break;
+                    }
+                }
+                if(repeated==true){
+                    i--;
+                    repeated=false;
+                    continue;
+                }
+                else{
+                   arr[i]=rand;     
+                }                
+            }
+        }
+        
+        function printArr(){
+            var i;
+            fillTheArrayRandomly();
+            for(i=0; i<5; i++){
+                console.log(arr[i]);
+            }
+        }
+    </script>
 
 </body>
 </html>
