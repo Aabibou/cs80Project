@@ -69,7 +69,7 @@
     	*/
         function random0to7(){
 
-            //Math.floor(Math.random()*8) generates an integer 0 to 7.
+            //Math.floor(Math.random()*8) generates an integer 0 to 7 inclusive.
             //Ramdomly select a picture name.
             return Math.floor(Math.random()*8);//+".PNG";
         }
@@ -204,25 +204,45 @@
         function isRightAnswer(elem){
         	document.getElementById("text").innerHTML=expectedAnswer(elem);
         }
-
-        //document.getElementById("text").innerHTML=elem;
-
-
-
-  /*   
-    function radioListener(){
-	     var radios = document.forms["derivativeAnswers"].elementsd["guessOptions"];
-	     /*for(radio in radios){
-	     	return radios[radio].onclick = function(){
-	     	 return radio.value;
-	     	}
-	     
-	     return 
-	    }
-*/
-/*	  document.getElementById("radioValue").innerHTML="You chose answer: "+radioListener();
-	  document.getElementById("derivativeAnswers").addEventListener("click", radioListener());
-  */      
+        
+        //array of size 5
+        var arr = Array(5);
+        
+        /*
+            This function will fill the array (arr[5]) with 5 different random number
+            between 0 to 7 inclusive.
+        */
+        //Not tested yet
+        function fillTheArrayRandomly(){
+            var i, j, rand;
+            var repeated=false;
+            for(i=0; i<5; i++){
+                rand=random0to7;
+                //check if a number is repeated
+                for(j=0; j<i; j++){
+                    if(arr[j]==rand){
+                        repeated=true;
+                        break;
+                    }
+                }
+                if(repeated==true){
+                    i--;
+                    repeated=false;
+                    continue;
+                }
+                else{
+                   arr[i]=rand;     
+                }                
+            }
+        }
+        
+        function printArr(){
+            var i;
+            fillTheArrayRandomly();
+            for(i=0; i<5; i++){
+                console.log(arr[i]);
+            }
+        }
     </script>
 
 </body>
