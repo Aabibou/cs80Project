@@ -3,46 +3,61 @@
 <head>
 	<title>Derivative game!</title>
 	<style type="text/css">
+        
+        .flex-container>div{
+            background-color: antiquewhite;
+            margin 10px;
+            padding 20px;
+            font-size: 30px;
+        }
 	
 		#yourGuesses{
 			float: right;
 			text-align: right;
 			margin-right: 100px;
+            margin-top; 50px;
 		}
+        #toBeGuessed{
+            float: left;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
 	</style>
 </head>
 <body>
 	<p style="text-align: center">Show us your Math skills!</p>
 
-	<div id="toBeGuessed">
-		What is the derivative of this:<br>
-		<img id="theDerivative" alt="Derivative of a trig function" height="70px" width="200">
-	</div>
-	<div id="yourGuesses">
-		<strong>Click on your guess:<br></strong>
-		<form name="derivativeAnswers">
-			<label id="radio1">Image 1
-				<img id="option1" height="70px" width="200">
-				<input type="radio" name="guessOptions" value="1" id="ans1"><br>
-			</label>
-			<label id="radio2">Image 2
-				<img id="option2" height="70px" width="200">
-				<input type="radio" name="guessOptions" value="2" id="ans2"><br>
-			</label>
-		<!--
-			<label>Image 3
-				<input type="radio" name="guessOptions" value="3" id="ans
-				3"><br>
-			</label>
-			<label>Image 4
-				<input type="radio" name="guessOptions" value="1" id="ans4"><br>
-			</label>
-		-->
-		</form>
+    <div class="flex-container">
+        <div id="toBeGuessed">
+            What is the derivative of this:<br>
+            <img id="theDerivative" alt="Derivative of a trig function" height="70px" width="200">
+        </div>
+        <div id="yourGuesses">
+            <strong>Click on your guess:<br></strong>
+            <form name="derivativeAnswers">
+                <label id="radio1">
+                    <img id="option1" height="70px" width="200">
+                    <input type="radio" name="guessOptions" value="1" id="ans1"><br>
+                </label>
+                <label id="radio2">
+                    <img id="option2" height="70px" width="200">
+                    <input type="radio" name="guessOptions" value="2" id="ans2"><br>
+                </label>
+            <!--
+                <label>Image 3
+                    <input type="radio" name="guessOptions" value="3" id="ans
+                    3"><br>
+                </label>
+                <label>Image 4
+                    <input type="radio" name="guessOptions" value="1" id="ans4"><br>
+                </label>
+            -->
+            </form>
 
-		<p id="text"></p>
+            <p id="text"></p>
 
-	</div>
+        </div>
+    </div>
 	<p id="radioValue"></p>
     
     <script>
