@@ -1,53 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    visibility: hidden;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    margin: 0;
 }
 
-html {
-    height: 100%;
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 0.5em;
+    text-align: left;
 }
 
-.rowContainer {
-    margin: auto;
+.gameContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 100%;
+    align-items: center;
+    /*width: 100vw;*/
+    min-height: 100%;
 }
 
 .gameRow {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
+    width: 100%;
+    display: none;
+    justify-content: center;
 }
 
-.gameData {
-    visibility: visible;
-}
-
-#startButton {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    visibility: visible;
-}
-
-#rgbSliders {
-    margin: auto;
+.sliders {
+    flex-direction: column;
     width: 50%;
 }
 
-#colorSquareHolder {
+.newGame {
     display: flex;
-    justify-content: space-around;
-    /*background-color: lightgray;*/
 }
 
+.gameOver {
+    display: none;
+}
+
+.dataTable {
+    display: none;
+}
 
 /* source:
     https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
@@ -79,24 +77,24 @@ input[type=range]::-webkit-slider-thumb {
     box-shadow: none; /*1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
     border: none; /*1px solid #000000;*/
     height: 1em; /*16px; /*36px;*/
-    width: 1em; /*16px; */
-    border-radius: 50%; /*3px;*/
+    width: 0.5em; /*16px; */
+    border-radius: 25%; /*3px;*/
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -.19em; /*-14px;*/
 }
 
-#rSlider::-webkit-slider-thumb {
+#redSlider::-webkit-slider-thumb {
     background: #ff0000;
     /*background: red;*/
 }
 
-#gSlider::-webkit-slider-thumb {
+#greenSlider::-webkit-slider-thumb {
     background: #00ff00;
 }
 
-#bSlider::-webkit-slider-thumb {
+#blueSlider::-webkit-slider-thumb {
     background: #0000ff;
 }
 
