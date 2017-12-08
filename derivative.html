@@ -22,6 +22,15 @@
             margin-left: 100px;
             margin-top: 50px;
         }
+        
+        body{
+            visibility: hidden;
+        }
+        #startButton{
+            visibility: visible;
+            left: 50%;
+            top: 50%;
+        }
 	</style>
 </head>
 <body>
@@ -54,11 +63,17 @@
             -->
             </form>
 
-            <p id="text"></p>
+            
 
         </div>
+        <p id="text"></p>
     </div>
-	<p id="radioValue"></p>
+    
+    <div>
+        <button id="startButton">Start</button>
+    </div>
+
+	<!--<p id="radioValue"></p>-->
     
     <script>
     // Global variable of 8 pictures name.
@@ -83,7 +98,6 @@
         //an array of size of
         //var twoOptions = new array(2);
         var twoOptions=["", ""];
-        console.log(twoOptions[0]);
         /*
         	This function return an array of size 2.
         	they hold the options which the use has to guess the right solution.
@@ -212,12 +226,11 @@
             This function will fill the array (arr[5]) with 5 different random number
             between 0 to 7 inclusive.
         */
-        //Not tested yet
         function fillTheArrayRandomly(){
             var i, j, rand;
             var repeated=false;
             for(i=0; i<5; i++){
-                rand=random0to7;
+                rand=random0to7();
                 //check if a number is repeated
                 for(j=0; j<i; j++){
                     if(arr[j]==rand){
@@ -234,15 +247,26 @@
                    arr[i]=rand;     
                 }                
             }
-        }
-        
+        }        
+    /* 
+        //testint fillTheArrayRandomly()
         function printArr(){
             var i;
             fillTheArrayRandomly();
             for(i=0; i<5; i++){
-                console.log(arr[i]);
+                document.writeln("<h1>"+arr[i]+"</h1>");
             }
         }
+        
+        printArr();
+    */
+        
+    //Start button
+    document.getElementById("startButton").addEventListener("click", function(){
+        document.getElementById("startButton").style.visibility="hidden";
+        document.body.style.visibility="visible";
+    });
+        
     </script>
 
 </body>
