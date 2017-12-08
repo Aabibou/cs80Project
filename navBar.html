@@ -12,21 +12,28 @@
             font-family: sans-serif;
         }
 
-        html, body {
+        html {
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
-        }
-
-        body {
-            position: relative; /* 1. Position relative because of absolute child elements */
-            padding: 60px 0 60px 0; /* 2. Using padding to define strech-able space */
-            box-sizing: border-box; /* 3. Box sizing to subtract padding and border from the 100% height of this element when child elements define 100% height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            box-sizing: border-box;
         }
 
         .topnav {
-            position: absolute; /* 4. Setting fixed height elements to absolute */
-            width: 100%; /* When absolute a width has to be defined */
+            align-self: flex-start;
+            width: 100%;
             top: 0;
             display: flex;
             justify-content: space-between;
@@ -63,7 +70,7 @@
             display: block;
             text-align: left;
             font-size: 16px;
-            min-width: 160px;
+            /*min-width: 160px;*/
         }
 
         .dropdown-content a:hover,.dropdown-content input[type=submit]:hover {
@@ -77,7 +84,11 @@
         }
 
         .gameContent {
-            height: 100%;
+
+            box-sizing: border-box;
+            width: 100%;
+            flex-grow: 1;
+            align-self: flex-end;
         }
 
     </style>
@@ -110,7 +121,7 @@
 
 </div>
 
-<section class="gameContent"></section>
+<iframe class="gameContent" src="welcomeScreen.html" ></iframe>
 
 
 <script>
@@ -118,6 +129,7 @@
     var userName = "User";
     var userMenu = ".loginMenu";
     var loggedIn = false;
+
 
     $('#loginForm').submit(function(event) {
         userName = $("#userName").val();
@@ -170,11 +182,13 @@
 
     // starts a new game color game
     $("#colorLink").click( function () {
-        $('.gameContent').load('colorMatchMain.html');
+        // $('.gameContent').load('colorMatchMain.html');
+        $(".gameContent").attr("src","colorMatchMain.html");
     });
     // starts a new game derivative game
     $("#derivativeLink").click( function () {
-        $('.gameContent').load('derivative.html');
+        // $('.gameContent').load('derivative.html');
+        $(".gameContent").attr("src","derivative.html");
     });
 
 </script>
