@@ -7,18 +7,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
-
+        /* get rid of extra space */
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
 
+        /* take up available area */
         html {
             height: 100%;
             width: 100%;
         }
 
+        /* styling to make sure welcome is centered */
         body{
             display: flex;
             justify-content: center;
@@ -35,14 +37,13 @@
 <body>
 
 <div>
-
+    <!-- starting text, welcome message display-->
     <h1 id="greeting">Welcome, click  on Games to play your favorite game.</h1>
-
 </div>
 
 
 <script>
-
+    // array of welcome messages
     var welcomeArray = ["Welcome, click  on Games to play your favorite game.",
         "Bienvenido, haz clic en Games para jugar a tu juego favorito.",
         "Bienvenue, appuyer sur Games pour jouer ton jeu préféré",
@@ -52,6 +53,7 @@
     var index = 0;
     var delaySeconds = 3.5;
 
+    // infinite fade out / fade in loop of sequential messages
     $(document).ready(function() {
 
         msg.html("<h3>" + welcomeArray[index] + "</h3>");
@@ -69,12 +71,7 @@
         loop();
     });
 
-
-
-
 </script>
-
-
 
 </body>
 </html>

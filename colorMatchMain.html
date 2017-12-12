@@ -11,11 +11,10 @@
 <body>
 
 <section class="gameContainer">
-    <!-- end message for end of game -->
+    <!-- message for end of game -->
     <section class="gameOver">
         <h1>Thanks for playing!</h1>
     </section>
-
     <!-- row holding target and input color boxes -->
     <section class="gameRow">
         <span class="colorSquare" id="targetSquare" ></span>
@@ -45,29 +44,29 @@
     </section>
 </section>
 
-<!-- for debugging -->
-<section class="dataTable">
-    <table>
-        <tr>
-            <td># of Trials</td>
-            <td>Red Error</td>
-            <td>Grn Error</td>
-            <td>Blu Error</td>
-            <td>Trial Error</td>
-            <td>Trial Seconds</td>
-            <td>Avg Sceonds</td>
-        </tr>
-        <tr>
-            <td id="tableTrials">0</td>
-            <td id="tableRError">-</td>
-            <td id="tableGError">-</td>
-            <td id="tableBError">-</td>
-            <td id="tableTrialAvg">-</td>
-            <td id="tableTrialSeconds">-</td>
-            <td id="tableAvgSeconds">-</td>
-        </tr>
-    </table>
-</section>
+<!-- DEBUG: trial and average data -->
+<!--<section class="dataTable">-->
+    <!--<table>-->
+        <!--<tr>-->
+            <!--<td># of Trials</td>-->
+            <!--<td>Red Error</td>-->
+            <!--<td>Grn Error</td>-->
+            <!--<td>Blu Error</td>-->
+            <!--<td>Trial Error</td>-->
+            <!--<td>Trial Seconds</td>-->
+            <!--<td>Avg Sceonds</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td id="tableTrials">0</td>-->
+            <!--<td id="tableRError">-</td>-->
+            <!--<td id="tableGError">-</td>-->
+            <!--<td id="tableBError">-</td>-->
+            <!--<td id="tableTrialAvg">-</td>-->
+            <!--<td id="tableTrialSeconds">-</td>-->
+            <!--<td id="tableAvgSeconds">-</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</section>-->
 
 
 <script>
@@ -77,7 +76,6 @@
     var colorSquareSpacing = 200;
     var trialsPerGame = 3;
 
-    var trialDate = new Date();
     var trialStartTime = 0;
     var trialSeconds = 0;
     var trialSecondsAverage = 0;
@@ -105,10 +103,10 @@
     // check slider values against target RGB and compute data
     $("#matchButton").click( function() {
 
-        // record time
+        // record the amount of time between display and match
         trialSeconds = ((new Date).getTime() - trialStartTime) / 1000;
 
-        // get estimate
+        // get error values for this trial
         redError = Math.abs(redTarget - redInput);
         greenError = Math.abs(greenTarget - greenInput);
         blueError = Math.abs(blueTarget - blueInput);
@@ -121,21 +119,26 @@
         meanTrialErrorAverage = ((meanTrialErrorAverage * (trialNumber-1)) + meanTrialError) / trialNumber;
         trialSecondsAverage = ((trialSecondsAverage * (trialNumber-1)) + trialSeconds) / trialNumber
 
-        // display data on table
-        $("#tableTrials").html(trialNumber);
-        $("#tableRError").html(redError);
-        $("#tableGError").html(greenError);
-        $("#tableBError").html(blueError);
-        $("#tableTrialAvg").html(parseFloat(meanTrialError).toFixed(2));
-        $("#tableRunAvg").html(parseFloat(meanTrialErrorAverage).toFixed(2))
-        $("#tableTrialSeconds").html(parseFloat(trialSeconds).toFixed(2));
-        $("#tableAvgSeconds").html(parseFloat(trialSecondsAverage).toFixed(2));
+        // DEBUG: display data on table
+        // $("#tableTrials").html(trialNumber);
+        // $("#tableRError").html(redError);
+        // $("#tableGError").html(greenError);
+        // $("#tableBError").html(blueError);
+        // $("#tableTrialAvg").html(parseFloat(meanTrialError).toFixed(2));
+        // $("#tableRunAvg").html(parseFloat(meanTrialErrorAverage).toFixed(2))
+        // $("#tableTrialSeconds").html(parseFloat(trialSeconds).toFixed(2));
+        // $("#tableAvgSeconds").html(parseFloat(trialSecondsAverage).toFixed(2));
 
         // check to see if game over
         if (trialNumber >= trialsPerGame) {
-            // end game
+
+            // hide game stuff
             $(".gameRow").css("display","none");
+
+            // display new game button
             $(".gameOver, .newGame").css("display","flex");
+
+            // display table of average errors and time
             $(".gameText").html(
                 "<table>" +
                     "<tr>" +
@@ -161,13 +164,15 @@
                 "</table>"
             );
 
-
         } else { // go to next trial in game
+
             // increment number of trials completed
             trialNumber += 1;
             $(".gameText").html("Trial: " + trialNumber + "/" + trialsPerGame);
+
             // reset squares for next trial
             resetColorSquares();
+
             // restart trial timer
             trialStartTime = (new Date).getTime();
         }
@@ -225,11 +230,12 @@
         $("#inputSquare").css("background", "rgb(" + 127 + "," + 127 + "," + 127 + ")");
     }
 
-    // reset colors without recording error (mostly used for debugging)
+    // DEBUG: reset colors without recording error
     $("#resetButton").click( function() {
 
         // reset squares
         resetColorSquares();
+
         // reset trial timer
         trialStartTime = (new Date).getTime();
     });

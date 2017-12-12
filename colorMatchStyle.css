@@ -1,14 +1,17 @@
+/* get rid of extra space */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* take up available area */
 html, body {
     height: 100%;
     margin: 0;
 }
 
+/* display table style(s) */
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -16,39 +19,48 @@ table, th, td {
     text-align: left;
 }
 
+/* configure game content container to take up
+    the space given to it and to display the game rows
+    as desired (centered) */
 .gameContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    /*width: 100vw;*/
     min-height: 100%;
     height: 100%;
 }
 
+/* configure game rows to keep content centered */
 .gameRow {
     width: 100%;
     display: none;
     justify-content: center;
 }
 
+/* configure slider row to stack sliders vertically
+    and to not take up full row width */
 .sliders {
     flex-direction: column;
     width: 50%;
 }
 
+/* style used to display/hide new game button */
 .newGame {
     display: flex;
 }
 
+/* style used to display/hide game over data */
 .gameOver {
     display: none;
 }
 
+/* style used to display/hide debug table */
 .dataTable {
     display: none;
 }
 
+/* the following has to do with */
 /* source:
     https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 */
