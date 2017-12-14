@@ -64,9 +64,11 @@
     // determine if guess was correct, change img borders
     $(".guessSquare").click(function() {
 
-        $("#leftSquare").css("border-color", expectedAnswer($('#leftSquare').attr('src')) ? "green" : "red");
-        $("#rightSquare").css("border-color", expectedAnswer($('#rightSquare').attr('src')) ? "green" : "red");
 
+        if (!guessed) {
+        // change color of clicked image
+            $(this).css("border-color", expectedAnswer($(this).attr('src')) ? "green" : "red");
+        }
 
         if (!guessed) {
             guessed = true;
