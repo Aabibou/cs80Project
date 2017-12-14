@@ -3,44 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome!</title>
-
+    <link rel="stylesheet" type="text/css" href="gameStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <style>
-        /* get rid of extra space */
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        /* take up available area */
-        html {
-            height: 100%;
-            width: 100%;
-        }
-
-        /* styling to make sure welcome is centered */
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            box-sizing: border-box;
-
-        }
-
-    </style>
-
 </head>
+
 <body>
 
-<div>
-    <!-- starting text, welcome message display-->
-    <h1 id="greeting">Welcome, click  on Games to play your favorite game.</h1>
+<div class="gameContainer">
+    <!-- row holding/centering message -->
+    <div class="gameRow" style="display:flex">
+        <!-- starting text, welcome message display-->
+        <h2 id="greeting">Welcome, click  on Games to play your favorite game.</h2>
+    </div>
 </div>
-
 
 <script>
     // array of welcome messages
@@ -49,11 +25,12 @@
         "Bienvenue, appuyer sur Games pour jouer ton jeu préféré",
         ""
     ];
+
     var msg = $("#greeting")
     var index = 0;
     var delaySeconds = 3.5;
 
-    // infinite fade out / fade in loop of sequential messages
+    // infinite fade out / fade in loop over array of messages
     $(document).ready(function() {
 
         msg.html("<h3>" + welcomeArray[index] + "</h3>");

@@ -1,45 +1,44 @@
 <!DOCTYPE html>
-<html>
-
-<meta charset=utf-8 />
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Derivative Game</title>
     <link rel="stylesheet" type="text/css" href="gameStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-<section class="gameContainer">
+<div class="gameContainer">
     <!-- row holding target box -->
-    <section class="gameRow">
-        <img class="gameSquare" id="targetSquare" ></img>
-    </section>
+    <div class="gameRow">
+        <img class="gameSquare" id="targetSquare" src="javascript:void(0)" alt="integral">
+    </div>
     <!-- message for end of game -->
-    <section class="gameOver">
-        <h1>Thanks for playing!</h1>
-    </section>
+    <div class="gameOver">
+        <h3>Thanks for playing!</h3>
+    </div>
     <!-- game instructions/progress/data -->
-    <section class="gameText">
-        <h1>Derivatives:</h1>
+    <div class="gameText">
+        <h3>Derivatives:</h3>
         <p>Click the derivative of the integral!</p>
-    </section>
+    </div>
     <!-- row holding guess boxes -->
-    <section class="gameRow">
-        <img class="guessSquare gameSquare" id="leftSquare" ></img>
+    <div class="gameRow">
+        <img class="guessSquare gameSquare" id="leftSquare" src="javascript:void(0)" alt="guess left" >
         <span class="gameSquare" id="middleSquare" ></span>
-        <img class="guessSquare gameSquare" id="rightSquare" ></img>
-    </section>
+        <img class="guessSquare gameSquare" id="rightSquare" src="javascript:void(0)" alt="guess right">
+    </div>
     <!-- row with match (and/or reset) button -->
-    <section class="gameRow">
+    <div class="gameRow">
         <!--<button id="resetButton">Reset</button>-->
         <button class="nextTrial resetButton">Next</button>
-    </section>
+    </div>
     <!-- button to start or retart game -->
-    <section class="newGame resetButton">
+    <div class="newGame resetButton">
         <button>Start New Game</button>
-    </section>
-</section>
+    </div>
+</div>
 
 <script>
 

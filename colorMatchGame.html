@@ -1,106 +1,82 @@
 <!DOCTYPE html>
-<html>
-
-<meta charset=utf-8 />
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Color Match Game</title>
     <link rel="stylesheet" type="text/css" href="gameStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-<section class="gameContainer">
+<div class="gameContainer">
     <!-- message for end of game -->
-    <section class="gameOver">
-        <h1>Thanks for playing!</h1>
-    </section>
+    <div class="gameOver">
+        <h2>Thanks for playing!</h2>
+    </div>
     <!-- row holding target and input color boxes -->
-    <section class="gameRow">
+    <div class="gameRow">
         <span class="colorSquare" id="targetSquare" ></span>
         <span class="colorSquare" id="middleSquare" ></span>
         <span class="colorSquare" id="inputSquare" ></span>
-    </section>
+    </div>
     <!-- game instructions/progress/data -->
-    <section class="gameText">
-        <h1>Color Match:</h1>
+    <div class="gameText">
+        <h3>Color Match:</h3>
         <p>Use the sliders to match the color on the right to the one on the left.</p>
         <p>Click the Match button when the colors are the same.</p>
-    </section>
+    </div>
     <!-- row with RGB sliders -->
-    <section class="sliders gameRow">
-        <input type="range" min="0" max="255" value="127" class="slider" id="redSlider">
-        <input type="range" min="0" max="255" value="127" class="slider" id="greenSlider">
-        <input type="range" min="0" max="255" value="127" class="slider" id="blueSlider">
-    </section>
+    <div class="sliders gameRow">
+        <input type="range" min="0" max="255" value="127" id="redSlider">
+        <input type="range" min="0" max="255" value="127" id="greenSlider">
+        <input type="range" min="0" max="255" value="127" id="blueSlider">
+    </div>
     <!-- row with match (and/or reset) button -->
-    <section class="gameRow">
+    <div class="gameRow">
         <!--<button id="resetButton">Reset</button>-->
         <button id="matchButton">Match</button>
-    </section>
+    </div>
     <!-- button to start or retart game -->
-    <section class="newGame">
+    <div class="newGame">
         <button>Start New Game</button>
-    </section>
-</section>
-
-<!-- DEBUG: trial and average data -->
-<!--<section class="dataTable">-->
-    <!--<table>-->
-        <!--<tr>-->
-            <!--<td># of Trials</td>-->
-            <!--<td>Red Error</td>-->
-            <!--<td>Grn Error</td>-->
-            <!--<td>Blu Error</td>-->
-            <!--<td>Trial Error</td>-->
-            <!--<td>Trial Seconds</td>-->
-            <!--<td>Avg Sceonds</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td id="tableTrials">0</td>-->
-            <!--<td id="tableRError">-</td>-->
-            <!--<td id="tableGError">-</td>-->
-            <!--<td id="tableBError">-</td>-->
-            <!--<td id="tableTrialAvg">-</td>-->
-            <!--<td id="tableTrialSeconds">-</td>-->
-            <!--<td id="tableAvgSeconds">-</td>-->
-        <!--</tr>-->
-    <!--</table>-->
-<!--</section>-->
-
+    </div>
+</div>
 
 <script>
 
     // game settings
-    var colorSquareSize = 200;
-    var colorSquareSpacing = 200;
-    var trialsPerGame = 3;
+    const colorSquareSize = 200;
+    const colorSquareSpacing = 200;
+    const trialsPerGame = 3;
 
+    // game variables
     var trialStartTime = 0;
     var trialSeconds = 0;
     var trialSecondsAverage = 0;
-
     var trialNumber = 0;
-    var meanTrialError = 0;
-    var meanTrialErrorAverage = 0;
+
+    // slider/target RGB values
+    var redTarget = 0;
+    var greenTarget = 0;
+    var blueTarget = 0;
 
     var redInput = 127;
     var greenInput = 127;
     var blueInput = 127;
 
-    var redTarget = 0;
-    var greenTarget = 0;
-    var blueTarget = 0;
-
+    // single-trial error
     var redError = 0;
     var greenError = 0;
     var blueError = 0;
-
+    var meanTrialError = 0;
+    // average error
     var redErrorAverage = 0;
     var greenErrorAverage = 0;
     var blueErrorAverage = 0;
+    var meanTrialErrorAverage = 0;
 
-    // check slider values against target RGB and compute data
+    // check slider values against target RGB and compute errors/time
     $("#matchButton").click( function() {
 
         // record the amount of time between display and match
@@ -117,17 +93,7 @@
         greenErrorAverage = ((greenErrorAverage * (trialNumber-1)) + greenError) / trialNumber;
         blueErrorAverage = ((blueErrorAverage * (trialNumber-1)) + blueError) / trialNumber;
         meanTrialErrorAverage = ((meanTrialErrorAverage * (trialNumber-1)) + meanTrialError) / trialNumber;
-        trialSecondsAverage = ((trialSecondsAverage * (trialNumber-1)) + trialSeconds) / trialNumber
-
-        // DEBUG: display data on table
-        // $("#tableTrials").html(trialNumber);
-        // $("#tableRError").html(redError);
-        // $("#tableGError").html(greenError);
-        // $("#tableBError").html(blueError);
-        // $("#tableTrialAvg").html(parseFloat(meanTrialError).toFixed(2));
-        // $("#tableRunAvg").html(parseFloat(meanTrialErrorAverage).toFixed(2))
-        // $("#tableTrialSeconds").html(parseFloat(trialSeconds).toFixed(2));
-        // $("#tableAvgSeconds").html(parseFloat(trialSecondsAverage).toFixed(2));
+        trialSecondsAverage = ((trialSecondsAverage * (trialNumber-1)) + trialSeconds) / trialNumber;
 
         // check to see if game over
         if (trialNumber >= trialsPerGame) {
@@ -208,7 +174,7 @@
         trialStartTime = (new Date).getTime();
     });
 
-    // gets values from all sliders whenever one slider changes
+    // gets values from all sliders whenever any slider changes
     $(".sliders").change(function() {
         redInput = $("#redSlider").val();
         greenInput = $("#greenSlider").val();
@@ -218,7 +184,7 @@
 
     // resets target and input squares
     function resetColorSquares() {
-        // randomize target square
+        // randomize target square RGB
         redTarget = Math.floor(Math.random() * 256);
         greenTarget = Math.floor(Math.random() * 256);
         blueTarget = Math.floor(Math.random() * 256);
@@ -229,18 +195,6 @@
         $("#blueSlider").val(127);
         $("#inputSquare").css("background", "rgb(" + 127 + "," + 127 + "," + 127 + ")");
     }
-
-    // DEBUG: reset colors without recording error
-    $("#resetButton").click( function() {
-
-        // reset squares
-        resetColorSquares();
-
-        // reset trial timer
-        trialStartTime = (new Date).getTime();
-    });
-
-
 
 </script>
 

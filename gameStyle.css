@@ -82,32 +82,9 @@ input[type=range]:focus {
     outline: none;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 0.66em; /* 8.4px;*/
-    cursor: pointer;
-    /*animate: 0.2s;*/
-    box-shadow: none; /*1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
-    background: lightgray;
-    border-radius: 0; /*1px;*/
-    border: none; /*1px solid #000000;*/
-}
-
-input[type=range]::-webkit-slider-thumb {
-    box-shadow: none; /*1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
-    border: none; /*1px solid #000000;*/
-    height: 1em; /*16px; /*36px;*/
-    width: 0.5em; /*16px; */
-    border-radius: 25%; /*3px;*/
-    background: #ffffff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -.19em; /*-14px;*/
-}
-
+/* slider colors */
 #redSlider::-webkit-slider-thumb {
     background: #ff0000;
-    /*background: red;*/
 }
 
 #greenSlider::-webkit-slider-thumb {
@@ -118,30 +95,55 @@ input[type=range]::-webkit-slider-thumb {
     background: #0000ff;
 }
 
-/*input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #367ebd;
-}*/
-
-/* firefox */
-/*input[type=range]::-moz-range-track {
+/* chrome slider track */
+input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8.4px;
+    height: 0.66em;
     cursor: pointer;
-    !* animate: 0.2s; *!
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
+    box-shadow: none;
+    background: lightgray;
+    border-radius: 1px;
+    border: none;
 }
-input[type=range]::-moz-range-thumb {
-    !*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*!
-    !*border: 1px solid #000000;*!
-    height: 16px; !*36px;*!
-    width: 16px;
-    border-radius: 50%; !*3px;*!
+
+/* chrome slider */
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: none;
+    border: none;
+    height: 1em;
+    width: 0.5em;
+    border-radius: 25%;
     background: #ffffff;
     cursor: pointer;
-}*/
+    -webkit-appearance: none;
+    margin-top: -.19em;
+}
+
+
+/* firefox slider track */
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 0.66em;
+    cursor: pointer;
+    box-shadow: none;
+    background: lightgray;
+    border-radius: 1px;
+    border: none;
+}
+
+/* firefox slider */
+input[type=range]::-moz-range-thumb {
+    box-shadow: none;
+    border: none;
+    height: 1em;
+    width: 0.5em;
+    border-radius: 25%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -.19em;
+}
+
 /* IE? */
 /*
 input[type=range]::-ms-track {
